@@ -9,38 +9,234 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RewardsRouteImport } from './routes/rewards'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as MatchRouteImport } from './routes/match'
+import { Route as HomeRouteImport } from './routes/home'
+import { Route as ChatRouteImport } from './routes/chat'
+import { Route as AdminRouteImport } from './routes/admin'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as QuestsIndexRouteImport } from './routes/quests/index'
+import { Route as QuestsIdRouteImport } from './routes/quests/$id'
+import { Route as QuestActiveRouteImport } from './routes/quest.active'
+import { Route as QuestReviewIdRouteImport } from './routes/quest.review.$id'
 
+const RewardsRoute = RewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MatchRoute = MatchRouteImport.update({
+  id: '/match',
+  path: '/match',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HomeRoute = HomeRouteImport.update({
+  id: '/home',
+  path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChatRoute = ChatRouteImport.update({
+  id: '/chat',
+  path: '/chat',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminRoute = AdminRouteImport.update({
+  id: '/admin',
+  path: '/admin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuestsIndexRoute = QuestsIndexRouteImport.update({
+  id: '/quests/',
+  path: '/quests/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuestsIdRoute = QuestsIdRouteImport.update({
+  id: '/quests/$id',
+  path: '/quests/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuestActiveRoute = QuestActiveRouteImport.update({
+  id: '/quest/active',
+  path: '/quest/active',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const QuestReviewIdRoute = QuestReviewIdRouteImport.update({
+  id: '/quest/review/$id',
+  path: '/quest/review/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/chat': typeof ChatRoute
+  '/home': typeof HomeRoute
+  '/match': typeof MatchRoute
+  '/onboarding': typeof OnboardingRoute
+  '/profile': typeof ProfileRoute
+  '/rewards': typeof RewardsRoute
+  '/quest/active': typeof QuestActiveRoute
+  '/quests/$id': typeof QuestsIdRoute
+  '/quests/': typeof QuestsIndexRoute
+  '/quest/review/$id': typeof QuestReviewIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/chat': typeof ChatRoute
+  '/home': typeof HomeRoute
+  '/match': typeof MatchRoute
+  '/onboarding': typeof OnboardingRoute
+  '/profile': typeof ProfileRoute
+  '/rewards': typeof RewardsRoute
+  '/quest/active': typeof QuestActiveRoute
+  '/quests/$id': typeof QuestsIdRoute
+  '/quests': typeof QuestsIndexRoute
+  '/quest/review/$id': typeof QuestReviewIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin': typeof AdminRoute
+  '/chat': typeof ChatRoute
+  '/home': typeof HomeRoute
+  '/match': typeof MatchRoute
+  '/onboarding': typeof OnboardingRoute
+  '/profile': typeof ProfileRoute
+  '/rewards': typeof RewardsRoute
+  '/quest/active': typeof QuestActiveRoute
+  '/quests/$id': typeof QuestsIdRoute
+  '/quests/': typeof QuestsIndexRoute
+  '/quest/review/$id': typeof QuestReviewIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin'
+    | '/chat'
+    | '/home'
+    | '/match'
+    | '/onboarding'
+    | '/profile'
+    | '/rewards'
+    | '/quest/active'
+    | '/quests/$id'
+    | '/quests/'
+    | '/quest/review/$id'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin'
+    | '/chat'
+    | '/home'
+    | '/match'
+    | '/onboarding'
+    | '/profile'
+    | '/rewards'
+    | '/quest/active'
+    | '/quests/$id'
+    | '/quests'
+    | '/quest/review/$id'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin'
+    | '/chat'
+    | '/home'
+    | '/match'
+    | '/onboarding'
+    | '/profile'
+    | '/rewards'
+    | '/quest/active'
+    | '/quests/$id'
+    | '/quests/'
+    | '/quest/review/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminRoute: typeof AdminRoute
+  ChatRoute: typeof ChatRoute
+  HomeRoute: typeof HomeRoute
+  MatchRoute: typeof MatchRoute
+  OnboardingRoute: typeof OnboardingRoute
+  ProfileRoute: typeof ProfileRoute
+  RewardsRoute: typeof RewardsRoute
+  QuestActiveRoute: typeof QuestActiveRoute
+  QuestsIdRoute: typeof QuestsIdRoute
+  QuestsIndexRoute: typeof QuestsIndexRoute
+  QuestReviewIdRoute: typeof QuestReviewIdRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/rewards': {
+      id: '/rewards'
+      path: '/rewards'
+      fullPath: '/rewards'
+      preLoaderRoute: typeof RewardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/match': {
+      id: '/match'
+      path: '/match'
+      fullPath: '/match'
+      preLoaderRoute: typeof MatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/home': {
+      id: '/home'
+      path: '/home'
+      fullPath: '/home'
+      preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chat': {
+      id: '/chat'
+      path: '/chat'
+      fullPath: '/chat'
+      preLoaderRoute: typeof ChatRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin': {
+      id: '/admin'
+      path: '/admin'
+      fullPath: '/admin'
+      preLoaderRoute: typeof AdminRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,11 +244,50 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quests/': {
+      id: '/quests/'
+      path: '/quests'
+      fullPath: '/quests/'
+      preLoaderRoute: typeof QuestsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quests/$id': {
+      id: '/quests/$id'
+      path: '/quests/$id'
+      fullPath: '/quests/$id'
+      preLoaderRoute: typeof QuestsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quest/active': {
+      id: '/quest/active'
+      path: '/quest/active'
+      fullPath: '/quest/active'
+      preLoaderRoute: typeof QuestActiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/quest/review/$id': {
+      id: '/quest/review/$id'
+      path: '/quest/review/$id'
+      fullPath: '/quest/review/$id'
+      preLoaderRoute: typeof QuestReviewIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminRoute: AdminRoute,
+  ChatRoute: ChatRoute,
+  HomeRoute: HomeRoute,
+  MatchRoute: MatchRoute,
+  OnboardingRoute: OnboardingRoute,
+  ProfileRoute: ProfileRoute,
+  RewardsRoute: RewardsRoute,
+  QuestActiveRoute: QuestActiveRoute,
+  QuestsIdRoute: QuestsIdRoute,
+  QuestsIndexRoute: QuestsIndexRoute,
+  QuestReviewIdRoute: QuestReviewIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

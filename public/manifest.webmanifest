@@ -1,0 +1,12 @@
+{
+  "name": "얄루 Yaalu — 글로컬 학생 교류 플랫폼",
+  "short_name": "Yaalu",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FFF9F5",
+  "theme_color": "#FF5E5B",
+  "icons": [
+    { "src": "/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
