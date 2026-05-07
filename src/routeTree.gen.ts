@@ -14,6 +14,7 @@ import { Route as MatchRouteImport } from './routes/match'
 import { Route as HomeRouteImport } from './routes/home'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuestsIndexRouteImport } from './routes/quests/index'
+import { Route as QuestsIdRouteImport } from './routes/quests/$id'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
@@ -40,12 +41,18 @@ const QuestsIndexRoute = QuestsIndexRouteImport.update({
   path: '/quests/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuestsIdRoute = QuestsIdRouteImport.update({
+  id: '/quests/$id',
+  path: '/quests/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
+  '/quests/$id': typeof QuestsIdRoute
   '/quests/': typeof QuestsIndexRoute
 }
 export interface FileRoutesByTo {
@@ -53,6 +60,7 @@ export interface FileRoutesByTo {
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
+  '/quests/$id': typeof QuestsIdRoute
   '/quests': typeof QuestsIndexRoute
 }
 export interface FileRoutesById {
@@ -61,14 +69,28 @@ export interface FileRoutesById {
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
+  '/quests/$id': typeof QuestsIdRoute
   '/quests/': typeof QuestsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/home' | '/match' | '/onboarding' | '/quests/'
+  fullPaths:
+    | '/'
+    | '/home'
+    | '/match'
+    | '/onboarding'
+    | '/quests/$id'
+    | '/quests/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home' | '/match' | '/onboarding' | '/quests'
-  id: '__root__' | '/' | '/home' | '/match' | '/onboarding' | '/quests/'
+  to: '/' | '/home' | '/match' | '/onboarding' | '/quests/$id' | '/quests'
+  id:
+    | '__root__'
+    | '/'
+    | '/home'
+    | '/match'
+    | '/onboarding'
+    | '/quests/$id'
+    | '/quests/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,6 +98,7 @@ export interface RootRouteChildren {
   HomeRoute: typeof HomeRoute
   MatchRoute: typeof MatchRoute
   OnboardingRoute: typeof OnboardingRoute
+  QuestsIdRoute: typeof QuestsIdRoute
   QuestsIndexRoute: typeof QuestsIndexRoute
 }
 
@@ -116,6 +139,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuestsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quests/$id': {
+      id: '/quests/$id'
+      path: '/quests/$id'
+      fullPath: '/quests/$id'
+      preLoaderRoute: typeof QuestsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -124,6 +154,7 @@ const rootRouteChildren: RootRouteChildren = {
   HomeRoute: HomeRoute,
   MatchRoute: MatchRoute,
   OnboardingRoute: OnboardingRoute,
+  QuestsIdRoute: QuestsIdRoute,
   QuestsIndexRoute: QuestsIndexRoute,
 }
 export const routeTree = rootRouteImport
