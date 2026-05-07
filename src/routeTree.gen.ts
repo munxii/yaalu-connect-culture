@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RewardsRouteImport } from './routes/rewards'
+import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MatchRouteImport } from './routes/match'
 import { Route as HomeRouteImport } from './routes/home'
@@ -23,6 +24,11 @@ import { Route as QuestReviewIdRouteImport } from './routes/quest.review.$id'
 const RewardsRoute = RewardsRouteImport.update({
   id: '/rewards',
   path: '/rewards',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
 const OnboardingRoute = OnboardingRouteImport.update({
@@ -77,6 +83,7 @@ export interface FileRoutesByFullPath {
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
+  '/profile': typeof ProfileRoute
   '/rewards': typeof RewardsRoute
   '/quest/active': typeof QuestActiveRoute
   '/quests/$id': typeof QuestsIdRoute
@@ -89,6 +96,7 @@ export interface FileRoutesByTo {
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
+  '/profile': typeof ProfileRoute
   '/rewards': typeof RewardsRoute
   '/quest/active': typeof QuestActiveRoute
   '/quests/$id': typeof QuestsIdRoute
@@ -102,6 +110,7 @@ export interface FileRoutesById {
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
+  '/profile': typeof ProfileRoute
   '/rewards': typeof RewardsRoute
   '/quest/active': typeof QuestActiveRoute
   '/quests/$id': typeof QuestsIdRoute
@@ -116,6 +125,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/match'
     | '/onboarding'
+    | '/profile'
     | '/rewards'
     | '/quest/active'
     | '/quests/$id'
@@ -128,6 +138,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/match'
     | '/onboarding'
+    | '/profile'
     | '/rewards'
     | '/quest/active'
     | '/quests/$id'
@@ -140,6 +151,7 @@ export interface FileRouteTypes {
     | '/home'
     | '/match'
     | '/onboarding'
+    | '/profile'
     | '/rewards'
     | '/quest/active'
     | '/quests/$id'
@@ -153,6 +165,7 @@ export interface RootRouteChildren {
   HomeRoute: typeof HomeRoute
   MatchRoute: typeof MatchRoute
   OnboardingRoute: typeof OnboardingRoute
+  ProfileRoute: typeof ProfileRoute
   RewardsRoute: typeof RewardsRoute
   QuestActiveRoute: typeof QuestActiveRoute
   QuestsIdRoute: typeof QuestsIdRoute
@@ -167,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/rewards'
       fullPath: '/rewards'
       preLoaderRoute: typeof RewardsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/onboarding': {
@@ -241,6 +261,7 @@ const rootRouteChildren: RootRouteChildren = {
   HomeRoute: HomeRoute,
   MatchRoute: MatchRoute,
   OnboardingRoute: OnboardingRoute,
+  ProfileRoute: ProfileRoute,
   RewardsRoute: RewardsRoute,
   QuestActiveRoute: QuestActiveRoute,
   QuestsIdRoute: QuestsIdRoute,
