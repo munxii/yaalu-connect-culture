@@ -15,6 +15,7 @@ import { Route as HomeRouteImport } from './routes/home'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as QuestsIndexRouteImport } from './routes/quests/index'
 import { Route as QuestsIdRouteImport } from './routes/quests/$id'
+import { Route as QuestActiveRouteImport } from './routes/quest.active'
 
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
@@ -46,12 +47,18 @@ const QuestsIdRoute = QuestsIdRouteImport.update({
   path: '/quests/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const QuestActiveRoute = QuestActiveRouteImport.update({
+  id: '/quest/active',
+  path: '/quest/active',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
+  '/quest/active': typeof QuestActiveRoute
   '/quests/$id': typeof QuestsIdRoute
   '/quests/': typeof QuestsIndexRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
+  '/quest/active': typeof QuestActiveRoute
   '/quests/$id': typeof QuestsIdRoute
   '/quests': typeof QuestsIndexRoute
 }
@@ -69,6 +77,7 @@ export interface FileRoutesById {
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
+  '/quest/active': typeof QuestActiveRoute
   '/quests/$id': typeof QuestsIdRoute
   '/quests/': typeof QuestsIndexRoute
 }
@@ -79,16 +88,25 @@ export interface FileRouteTypes {
     | '/home'
     | '/match'
     | '/onboarding'
+    | '/quest/active'
     | '/quests/$id'
     | '/quests/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/home' | '/match' | '/onboarding' | '/quests/$id' | '/quests'
+  to:
+    | '/'
+    | '/home'
+    | '/match'
+    | '/onboarding'
+    | '/quest/active'
+    | '/quests/$id'
+    | '/quests'
   id:
     | '__root__'
     | '/'
     | '/home'
     | '/match'
     | '/onboarding'
+    | '/quest/active'
     | '/quests/$id'
     | '/quests/'
   fileRoutesById: FileRoutesById
@@ -98,6 +116,7 @@ export interface RootRouteChildren {
   HomeRoute: typeof HomeRoute
   MatchRoute: typeof MatchRoute
   OnboardingRoute: typeof OnboardingRoute
+  QuestActiveRoute: typeof QuestActiveRoute
   QuestsIdRoute: typeof QuestsIdRoute
   QuestsIndexRoute: typeof QuestsIndexRoute
 }
@@ -146,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof QuestsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/quest/active': {
+      id: '/quest/active'
+      path: '/quest/active'
+      fullPath: '/quest/active'
+      preLoaderRoute: typeof QuestActiveRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -154,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   HomeRoute: HomeRoute,
   MatchRoute: MatchRoute,
   OnboardingRoute: OnboardingRoute,
+  QuestActiveRoute: QuestActiveRoute,
   QuestsIdRoute: QuestsIdRoute,
   QuestsIndexRoute: QuestsIndexRoute,
 }
