@@ -19,8 +19,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const demo = useStore((s) => s.demoMode);
 
   const rootTabs = ["/home", "/quests", "/chat", "/rewards", "/profile"];
-  const isRootTab = rootTabs.some((t) => path === t || path.startsWith(t + "/") === false && path === t) || path === "/";
-  // Show back button on any page that isn't one of the top-level tabs exactly
+  // Show back button on any page that isn't one of the top-level tabs or the landing root
   const showBack = !rootTabs.includes(path) && path !== "/";
 
   const titleMap: Record<string, { ko: string; en: string }> = {
