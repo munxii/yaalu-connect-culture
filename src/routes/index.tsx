@@ -350,7 +350,7 @@ function Landing() {
         </Link>
       </section>
 
-      <footer className="border-t py-10 bg-card">
+      <footer className="border-t py-10 bg-card pb-safe" style={{ paddingBottom: "calc(2.5rem + env(safe-area-inset-bottom))" }}>
         <div className="mx-auto max-w-6xl px-5 grid md:grid-cols-3 gap-6 text-sm">
           <div>
             <div className="flex items-center gap-2">
