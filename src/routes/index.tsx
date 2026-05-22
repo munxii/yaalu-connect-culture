@@ -1,9 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, MapPin, Users, Sparkles, Trophy, ShieldCheck, Camera, Clock } from "lucide-react";
+import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { MarketingSections } from "@/components/MarketingSections";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -104,7 +104,9 @@ function Landing() {
             <div className="flex items-center gap-1"><CheckCircle2 className="h-3 w-3 text-mint" /> 가입 1분</div>
             <div className="flex items-center gap-1"><CheckCircle2 className="h-3 w-3 text-mint" /> 부산 K-컬처</div>
           </div>
-          <p className="text-center text-[10px] text-muted-foreground/70 pt-1">↓ 아래로 스크롤해서 더 알아보기</p>
+          <Link to="/about" className="block text-center text-xs text-muted-foreground underline underline-offset-4 pt-2">
+            서비스 자세히 알아보기 →
+          </Link>
         </motion.div>
       </section>
 
@@ -182,8 +184,13 @@ function Landing() {
         </div>
       </section>
 
-      {/* Problem stats */}
-      <section className="bg-secondary text-secondary-foreground py-20 md:py-24">
+      {/* Marketing sections — desktop only. On mobile they live on /about */}
+      <div className="hidden md:block">
+        <MarketingSections />
+      </div>
+    </div>
+  );
+}
         <div className="mx-auto max-w-6xl px-5">
           <h2 className="text-3xl md:text-5xl font-black text-balance">유학생은 왔지만, <span className="text-primary">겉돈다.</span></h2>
           <p className="mt-3 text-white/60 max-w-2xl">한국 캠퍼스의 외국인 유학생은 매년 늘지만, 한국인 친구를 사귄 비율은 그만큼 자라지 못했습니다.</p>
