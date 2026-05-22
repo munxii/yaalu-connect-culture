@@ -42,7 +42,7 @@ function Landing() {
   return (
     <div className="min-h-screen bg-background">
       {/* Top utility bar */}
-      <div className="border-b bg-background/80 backdrop-blur sticky top-0 z-30">
+      <div className="border-b bg-background/80 backdrop-blur sticky top-0 z-30 pt-safe">
         <div className="mx-auto max-w-6xl px-5 py-3 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <div className="h-8 w-8 rounded-xl gradient-sunset flex items-center justify-center font-black text-white">Y</div>
@@ -53,15 +53,65 @@ function Landing() {
             <span>경성대 · 글로컬대학30</span>
           </div>
           <Link to="/onboarding">
-            <Button size="sm" className="rounded-full">시작하기</Button>
+            <Button size="sm" className="rounded-full min-h-touch px-4">시작하기</Button>
           </Link>
         </div>
       </div>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden">
+      {/* Mobile-only app-style hero */}
+      <section className="md:hidden relative overflow-hidden min-h-[calc(100vh-4rem)] flex flex-col justify-between px-6 pt-10 pb-12">
+        <div className="absolute inset-0 -z-10 bg-[radial-gradient(80%_60%_at_50%_0%,oklch(0.74_0.18_35/0.22),transparent_70%)]" />
+        <div className="flex-1 flex flex-col items-center justify-center text-center">
+          <motion.div
+            initial={{ scale: 0, rotate: -20 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: "spring", duration: 0.7 }}
+            className="h-24 w-24 rounded-[2rem] gradient-sunset flex items-center justify-center text-white font-black text-5xl shadow-pop"
+          >
+            Y
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.25 }}
+            className="mt-7"
+          >
+            <div className="text-3xl font-black text-secondary tracking-tight">얄루 <span className="text-muted-foreground font-medium text-xl">Yaalu</span></div>
+            <p className="mt-4 text-base text-muted-foreground leading-relaxed text-balance max-w-xs mx-auto">
+              한국인 2명 + 유학생 2명,<br/>오늘 오후 함께 커피 한 잔.
+            </p>
+            <div className="mt-5 inline-flex items-center gap-1.5 rounded-full bg-secondary/10 text-secondary px-3 py-1.5 text-[11px] font-semibold">
+              <Sparkles className="h-3 w-3" /> GLOCAL × KYUNGSUNG
+            </div>
+          </motion.div>
+        </div>
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.45 }}
+          className="space-y-3"
+        >
+          <Link to="/onboarding" className="block">
+            <Button size="lg" className="w-full rounded-full text-base h-14 shadow-pop">
+              매칭 시작하기 <ArrowRight className="ml-1 h-4 w-4" />
+            </Button>
+          </Link>
+          <Link to="/home" className="block">
+            <Button size="lg" variant="outline" className="w-full rounded-full h-12">데모 둘러보기</Button>
+          </Link>
+          <div className="flex items-center justify-center gap-4 pt-2 text-[11px] text-muted-foreground">
+            <div className="flex items-center gap-1"><CheckCircle2 className="h-3 w-3 text-mint" /> 무료</div>
+            <div className="flex items-center gap-1"><CheckCircle2 className="h-3 w-3 text-mint" /> 가입 1분</div>
+            <div className="flex items-center gap-1"><CheckCircle2 className="h-3 w-3 text-mint" /> 부산 K-컬처</div>
+          </div>
+          <p className="text-center text-[10px] text-muted-foreground/70 pt-1">↓ 아래로 스크롤해서 더 알아보기</p>
+        </motion.div>
+      </section>
+
+      {/* Desktop Hero */}
+      <section className="hidden md:block relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(80%_60%_at_50%_0%,oklch(0.74_0.18_35/0.18),transparent_70%)]" />
-        <div className="mx-auto max-w-6xl px-5 py-12 md:py-24 grid md:grid-cols-2 gap-10 items-center">
+        <div className="mx-auto max-w-6xl px-5 py-24 grid md:grid-cols-2 gap-10 items-center">
           <div>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
               <span className="inline-flex items-center gap-1.5 rounded-full bg-secondary/10 text-secondary px-3 py-1 text-xs font-semibold">
@@ -133,7 +183,7 @@ function Landing() {
       </section>
 
       {/* Problem stats */}
-      <section className="bg-secondary text-secondary-foreground py-16 md:py-24">
+      <section className="bg-secondary text-secondary-foreground py-20 md:py-24">
         <div className="mx-auto max-w-6xl px-5">
           <h2 className="text-3xl md:text-5xl font-black text-balance">유학생은 왔지만, <span className="text-primary">겉돈다.</span></h2>
           <p className="mt-3 text-white/60 max-w-2xl">한국 캠퍼스의 외국인 유학생은 매년 늘지만, 한국인 친구를 사귄 비율은 그만큼 자라지 못했습니다.</p>
@@ -300,7 +350,7 @@ function Landing() {
         </Link>
       </section>
 
-      <footer className="border-t py-10 bg-card">
+      <footer className="border-t py-10 bg-card pb-safe" style={{ paddingBottom: "calc(2.5rem + env(safe-area-inset-bottom))" }}>
         <div className="mx-auto max-w-6xl px-5 grid md:grid-cols-3 gap-6 text-sm">
           <div>
             <div className="flex items-center gap-2">
