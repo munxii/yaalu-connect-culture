@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle2, Sparkles } from "lucide-react";
+import { ArrowRight, CheckCircle2, Download, Sparkles } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { MarketingSections } from "@/components/MarketingSections";
@@ -52,9 +52,21 @@ function Landing() {
             <span className="px-2.5 py-1 rounded-full bg-muted">GLOCAL × KYUNGSUNG</span>
             <span>경성대 · 글로컬대학30</span>
           </div>
-          <Link to="/onboarding">
-            <Button size="sm" className="rounded-full min-h-touch px-4">시작하기</Button>
-          </Link>
+          <div className="flex items-center gap-2">
+            <Link to="/download" className="hidden sm:inline-flex">
+              <Button size="sm" variant="outline" className="rounded-full min-h-touch px-4 gap-1.5">
+                <Download className="h-3.5 w-3.5" /> 앱 다운로드
+              </Button>
+            </Link>
+            <Link to="/download" className="sm:hidden" aria-label="앱 다운로드">
+              <Button size="sm" variant="outline" className="rounded-full h-9 w-9 p-0">
+                <Download className="h-4 w-4" />
+              </Button>
+            </Link>
+            <Link to="/onboarding">
+              <Button size="sm" className="rounded-full min-h-touch px-4">시작하기</Button>
+            </Link>
+          </div>
         </div>
       </div>
 

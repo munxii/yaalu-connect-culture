@@ -14,6 +14,7 @@ import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as MatchRouteImport } from './routes/match'
 import { Route as HomeRouteImport } from './routes/home'
+import { Route as DownloadRouteImport } from './routes/download'
 import { Route as ChatRouteImport } from './routes/chat'
 import { Route as AdminRouteImport } from './routes/admin'
 import { Route as AboutRouteImport } from './routes/about'
@@ -46,6 +47,11 @@ const MatchRoute = MatchRouteImport.update({
 const HomeRoute = HomeRouteImport.update({
   id: '/home',
   path: '/home',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DownloadRoute = DownloadRouteImport.update({
+  id: '/download',
+  path: '/download',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChatRoute = ChatRouteImport.update({
@@ -94,6 +100,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/chat': typeof ChatRoute
+  '/download': typeof DownloadRoute
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
@@ -109,6 +116,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/chat': typeof ChatRoute
+  '/download': typeof DownloadRoute
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
@@ -125,6 +133,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/admin': typeof AdminRoute
   '/chat': typeof ChatRoute
+  '/download': typeof DownloadRoute
   '/home': typeof HomeRoute
   '/match': typeof MatchRoute
   '/onboarding': typeof OnboardingRoute
@@ -142,6 +151,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/chat'
+    | '/download'
     | '/home'
     | '/match'
     | '/onboarding'
@@ -157,6 +167,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/chat'
+    | '/download'
     | '/home'
     | '/match'
     | '/onboarding'
@@ -172,6 +183,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/admin'
     | '/chat'
+    | '/download'
     | '/home'
     | '/match'
     | '/onboarding'
@@ -188,6 +200,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   AdminRoute: typeof AdminRoute
   ChatRoute: typeof ChatRoute
+  DownloadRoute: typeof DownloadRoute
   HomeRoute: typeof HomeRoute
   MatchRoute: typeof MatchRoute
   OnboardingRoute: typeof OnboardingRoute
@@ -234,6 +247,13 @@ declare module '@tanstack/react-router' {
       path: '/home'
       fullPath: '/home'
       preLoaderRoute: typeof HomeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/download': {
+      id: '/download'
+      path: '/download'
+      fullPath: '/download'
+      preLoaderRoute: typeof DownloadRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/chat': {
@@ -300,6 +320,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   AdminRoute: AdminRoute,
   ChatRoute: ChatRoute,
+  DownloadRoute: DownloadRoute,
   HomeRoute: HomeRoute,
   MatchRoute: MatchRoute,
   OnboardingRoute: OnboardingRoute,
@@ -313,3 +334,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

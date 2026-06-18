@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { ArrowRight, MapPin, Users, Sparkles, Trophy, ShieldCheck, Camera, Clock } from "lucide-react";
+import { ArrowRight, MapPin, Users, Sparkles, Trophy, ShieldCheck, Camera, Clock, Download } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -203,6 +203,12 @@ export function MarketingSections() {
           <div>
             <div className="font-semibold text-secondary text-xs">팀</div>
             <p className="mt-2 text-xs text-muted-foreground">이은지 · 손영빈 · 김규태 · 이건우</p>
+            <Link
+              to="/download"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-primary/10 text-primary px-3 py-1.5 text-xs font-semibold hover:bg-primary/15 transition"
+            >
+              <Download className="h-3.5 w-3.5" /> 앱 다운로드 (Android)
+            </Link>
           </div>
           <div>
             <div className="font-semibold text-secondary text-xs">파트너</div>
